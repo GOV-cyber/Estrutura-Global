@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Estrutura Global — Negócios sem improviso</title>
+  <meta name="description" content="Um método prático para estruturar processos, atendimento, operação e logística para atuar fora do país com clareza, legalidade e previsibilidade." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Estrutura Global — Negócios sem improviso" />
+  <meta property="og:description" content="Estruture um negócio internacional sólido, sem improviso e sem atalhos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="cover.png" />
+  <meta property="og:url" content="https://SEUUSUARIO.github.io/estrutura-global/" />
+
+  <style>
+    :root{
+      --bg:#070A10;
+      --bg2:#0B1220;
+      --card:#0E1628;
+      --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.16);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.58);
+      --gold:#D6B86C;
+      --cyan:#46D3FF;
+      --green:#3DFFB5;
+      --danger:#FF4D6D;
+      --shadow: 0 24px 70px rgba(0,0,0,.55);
+      --shadow2: 0 18px 40px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 25% 10%, rgba(70,211,255,.12), transparent 55%),
+        radial-gradient(900px 600px at 75% 25%, rgba(214,184,108,.10), transparent 60%),
+        radial-gradient(900px 700px at 40% 80%, rgba(61,255,181,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,16,.62);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .topbar .wrap{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 20px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      letter-spacing:.4px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background:
+        radial-gradient(10px 10px at 30% 35%, rgba(70,211,255,.85), transparent 60%),
+        radial-gradient(12px 12px at 70% 30%, rgba(214,184,108,.85), transparent 60%),
+        radial-gradient(12px 12px at 60% 75%, rgba(61,255,181,.75), transparent 60%),
+        linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+    .brand b{font-size:14px}
+    .brand span{display:block; font-size:12px; color:var(--muted2)}
+    .nav{
+      display:flex; gap:14px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .nav a{opacity:.88}
+    .nav a:hover{opacity:1}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      font-weight:650;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition: transform .15s ease, border-color .2s ease, background .2s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.085)}
+    .btn.primary{
+      border-color: rgba(214,184,108,.35);
+      background: linear-gradient(180deg, rgba(214,184,108,.22), rgba(214,184,108,.08));
+    }
+    .btn.primary:hover{
+      border-color: rgba(214,184,108,.55);
+      background: linear-gradient(180deg, rgba(214,184,108,.28), rgba(214,184,108,.10));
+    }
+    .btn .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--gold);
+      box-shadow: 0 0 18px rgba(214,184,108,.35);
+    }
+
+    /* HERO */
+    header.hero{
+      padding:64px 0 26px;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns:1fr; gap:18px;}
+      .nav{display:none}
+    }
+    .hero-card{
+      border:1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(700px 260px at 35% 20%, rgba(70,211,255,.14), transparent 60%),
+        radial-gradient(700px 260px at 75% 0%, rgba(214,184,108,.12), transparent 60%),
+        radial-gradient(700px 260px at 60% 100%, rgba(61,255,181,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-card > *{position:relative}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.3px;
+      margin-bottom:12px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      font-size:12px;
+      color:var(--muted);
+    }
+    h1{
+      margin:0 0 12px;
+      font-size: 44px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    @media(max-width:520px){ h1{font-size:36px} }
+    .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.55;
+    }
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .mini{
+      margin-top:14px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      color:var(--muted2);
+      font-size:12.5px;
+    }
+    .mini .check{color:var(--green)}
+    .side{
+      display:grid; gap:14px;
+    }
+    .stat{
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(14,22,40,.78);
+      box-shadow: var(--shadow2);
+      padding:18px;
+    }
+    .stat b{display:block; font-size:14px; margin-bottom:6px}
+    .stat p{margin:0; color:var(--muted); font-size:13px; line-height:1.45}
+    .stat .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12px;
+    }
+    .tag i{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--cyan);
+      box-shadow:0 0 16px rgba(70,211,255,.35);
+      display:inline-block;
+    }
+
+    /* SECTIONS */
+    section{padding:54px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+    }
+    h2{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-.3px;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted2);
+      font-size:13px;
+      max-width:520px;
+      line-height:1.5;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media(max-width:960px){ .grid3{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(14,22,40,.68);
+      box-shadow: var(--shadow2);
+      padding:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .card:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(520px 220px at 30% 20%, rgba(70,211,255,.08), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .card > *{position:relative}
+    .card h3{margin:0 0 8px; font-size:15px}
+    .card p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
+    .list{
+      margin:0; padding:0; list-style:none;
+      display:grid; gap:10px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border:1px solid var(--stroke);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .list .b{color:var(--text); font-weight:650}
+    .ico{
+      width:26px; height:26px; border-radius:10px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+    }
+    .ico svg{opacity:.9}
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      align-items:start;
+    }
+    @media(max-width:960px){ .two{grid-template-columns:1fr} }
+
+    /* CTA STRIP */
+    .cta-strip{
+      border:1px solid rgba(214,184,108,.28);
+      background: linear-gradient(180deg, rgba(214,184,108,.16), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      padding:20px;
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .cta-strip b{font-size:15px}
+    .cta-strip span{display:block; color:var(--muted); font-size:13px; margin-top:4px; line-height:1.4}
+    .price{
+      display:flex; align-items:baseline; gap:10px;
+      color:var(--text);
+    }
+    .price .big{font-size:24px; font-weight:800; letter-spacing:-.2px}
+    .price .small{color:var(--muted2); font-size:12px}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      background: rgba(255,255,255,.03);
+      padding:14px 14px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      font-weight:700;
+      color:var(--text);
+      list-style:none;
+      outline:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); font-size:13px; line-height:1.55}
+
+    /* Footer */
+    footer{
+      padding:38px 0 80px;
+      border-top:1px solid var(--stroke);
+      color:var(--muted2);
+      font-size:12.5px;
+    }
+    footer a{opacity:.95; text-decoration:underline}
+
+    /* Floating CTA */
+    .floatbar{
+      position:fixed; left:0; right:0; bottom:14px; z-index:60;
+      pointer-events:none;
+    }
+    .floatbar .wrap{
+      display:flex; justify-content:center;
+    }
+    .float-inner{
+      pointer-events:auto;
+      max-width: var(--max);
+      width: calc(100% - 40px);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(7,10,16,.78);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding:10px 10px;
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+    }
+    .float-inner .left{
+      display:flex; gap:10px; align-items:center;
+      min-width: 0;
+    }
+    .float-inner .left b{font-size:13px}
+    .float-inner .left span{
+      color:var(--muted2);
+      font-size:12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 52vw;
+    }
+    .float-inner .right{display:flex; gap:10px; align-items:center}
+    .ghost{
+      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      box-shadow:none;
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* Scroll reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+      margin: 10px 0 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Estrutura Global</b>
+          <span>Negócios sem improviso</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navegação">
+        <a href="#sobre">Sobre</a>
+        <a href="#o-que-voce-vai-aprender">O que vai aprender</a>
+        <a href="#para-quem">Para quem é</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
+        <span class="dot"></span> Comprar na Hotmart
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-card reveal show">
+        <div class="kicker">
+          <span class="pill">Programa premium • foco em estrutura</span>
+          <span class="pill">Legal • previsível • sustentável</span>
+        </div>
+
+        <h1>Estruture um negócio internacional sólido,<br>sem improviso — e sem atalhos.</h1>
+
+        <p class="lead">
+          Um método prático para organizar processos, atendimento, operação e logística para quem já vive
+          (ou deseja viver) fora do país e quer crescer com clareza, segurança e previsibilidade.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
+            <span class="dot"></span> Quero acesso agora
+          </a>
+          <a class="btn" href="#o-que-voce-vai-aprender">
+            Ver o que vou aprender
+          </a>
+        </div>
+
+        <div class="mini">
+          <span><span class="check">✔</span> Sem promessa de “dinheiro rápido”</span>
+          <span><span class="check">✔</span> Sem truques ou brechas ilegais</span>
+          <span><span class="check">✔</span> Foco em estrutura e critério</span>
+        </div>
+
+        <div class="divider"></div>
+        <p class="lead" style="margin-top:14px; font-size:13px; color:var(--muted2)">
+          Nota de responsabilidade: este treinamento é educacional e estratégico e não substitui assessoria jurídica,
+          contábil ou migratória.
+        </p>
+      </div>
+
+      <aside class="side">
+        <div class="stat reveal">
+          <b>O problema invisível</b>
+          <p>
+            Improviso parece liberdade… até virar retrabalho, prejuízo e insegurança. Estrutura reduz risco e aumenta previsibilidade.
+          </p>
+          <div class="tag"><i></i> Clareza operacional</div>
+        </div>
+
+        <div class="stat reveal">
+          <b>O que você constrói aqui</b>
+          <p>
+            Uma base mínima sólida: processos, atendimento e decisões com critério — para operar fora do país com mais paz.
+          </p>
+          <div class="tag"><i style="background:var(--gold)"></i> Base sustentável</div>
+        </div>
+
+        <div class="stat reveal">
+          <b>Para quem é (de verdade)</b>
+          <p>
+            Adultos com renda, empreendedores e profissionais que querem elevar o nível do negócio — sem fantasia e sem palco.
+          </p>
+          <div class="tag"><i style="background:var(--green)"></i> Público filtrado</div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">Se você já tentou “na raça”, vai reconhecer isso</h2>
+          <p class="subtitle reveal">
+            A dor não é falta de vontade. É falta de estrutura, critério e sequência — e isso custa caro em ambiente internacional.
+          </p>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="card reveal">
+          <h3>O que costuma acontecer</h3>
+          <ul class="list">
+            <li>
+              <span class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div><span class="b">Tempo</span> vira retrabalho: você faz, desfaz, muda ferramenta, troca processo.</div>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 12h14" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <div><span class="b">Atendimento</span> vira caos: leads frios, mensagens perdidas, falta de padrão e follow-up.</div>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" stroke="white" stroke-opacity=".85" stroke-width="2"/><path d="M12 8h.01" stroke="white" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/></svg>
+              </span>
+              <div><span class="b">Decisão</span> vira achismo: você não tem critério pra escolher canal, oferta, preço e execução.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <h3>O que o Estrutura Global resolve</h3>
+          <ul class="list">
+            <li>
+              <span class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div><span class="b">Clareza</span> sobre o que fazer primeiro, o que cortar e o que não te dá retorno.</div>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-6 4 2 8-6-5-6 5 2-8-6-4h7l3-7z" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round"/></svg>
+              </span>
+              <div><span class="b">Estrutura mínima</span> de processos, atendimento e operação para rodar com previsibilidade.</div>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 19V5m12 14V5M6 12h12" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <div><span class="b">Critério</span> para decidir canais, ferramentas e rotinas sem “copiar fórmula” de internet.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px" class="cta-strip reveal">
+        <div>
+          <b>Se você quer operar fora do país com mais paz, começa pela estrutura.</b>
+          <span>Sem promessa vazia. Sem truque. Só o que funciona quando o ambiente é real.</span>
+        </div>
+        <div class="right">
+          <div class="price">
+            <div class="big">R$ 997</div>
+            <div class="small">Parcelamento disponível na Hotmart</div>
+          </div>
+          <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
+            <span class="dot"></span> Comprar agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU LEARN -->
+  <section id="o-que-voce-vai-aprender">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">O que você vai aprender</h2>
+          <p class="subtitle reveal">
+            Conteúdo direto ao ponto, orientado à execução, com foco em reduzir erros caros e aumentar previsibilidade operacional.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card reveal">
+          <h3>Pilar 1 — Estrutura e decisões</h3>
+          <p>Como sair do modo “tentativa e erro” e adotar critérios práticos para escolher prioridades, ferramentas e rotina.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Pilar 2 — Atendimento e processo</h3>
+          <p>Como padronizar atendimento, follow-up, organização de demanda e entregas sem virar escravo de mensagens.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Pilar 3 — Operação e logística</h3>
+          <p>Como pensar operação em ambiente internacional: previsibilidade, controle, riscos e decisões que protegem margem.</p>
+        </div>
+      </div>
+
+      <div class="two" style="margin-top:14px">
+        <div class="card reveal">
+          <h3>Você vai sair com</h3>
+          <ul class="list">
+            <li><span class="ico" aria-hidden="true">🧠</span><div><span class="b">Mapa de clareza</span> do que fazer primeiro e do que cortar.</div></li>
+            <li><span class="ico" aria-hidden="true">⚙️</span><div><span class="b">Rotina mínima</span> para operar com consistência (sem caos).</div></li>
+            <li><span class="ico" aria-hidden="true">📌</span><div><span class="b">Critérios de decisão</span> para escolher canal, oferta e execução.</div></li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Você NÃO vai receber</h3>
+          <ul class="list">
+            <li><span class="ico" aria-hidden="true">⛔</span><div>Promessa de dinheiro rápido ou “fórmula mágica”.</div></li>
+            <li><span class="ico" aria-hidden="true">⛔</span><div>Instrução para burlar regras, leis ou políticas do país.</div></li>
+            <li><span class="ico" aria-hidden="true">⛔</span><div>“Checklist de imigração” ou garantia de visto/emprego.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO ITS FOR -->
+  <section id="para-quem">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">Para quem é (e para quem não é)</h2>
+          <p class="subtitle reveal">
+            Este bloco filtra o público certo e reduz reembolso. Produto premium não tenta agradar todo mundo.
+          </p>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="card reveal">
+          <h3>✅ Para quem é</h3>
+          <ul class="list">
+            <li><span class="ico" aria-hidden="true">✅</span><div>Empreendedores e profissionais com renda que querem estruturar negócios fora do país.</div></li>
+            <li><span class="ico" aria-hidden="true">✅</span><div>Corretores e prestadores de serviço que querem elevar o nível operacional e escalar com processo.</div></li>
+            <li><span class="ico" aria-hidden="true">✅</span><div>Quem busca previsibilidade, clareza e decisões com critério — não modinha.</div></li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>❌ Para quem não é</h3>
+          <ul class="list">
+            <li><span class="ico" aria-hidden="true">❌</span><div>Quem quer promessa de lucro rápido, “atalho” ou resultado garantido.</div></li>
+            <li><span class="ico" aria-hidden="true">❌</span><div>Quem quer “burlar” regras de país, plataforma ou legislação.</div></li>
+            <li><span class="ico" aria-hidden="true">❌</span><div>Quem não está disposto a aplicar rotina mínima e executar com consistência.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHORITY -->
+  <section>
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">Sobre o autor</h2>
+          <p class="subtitle reveal">
+            Ajuste o texto abaixo com seus detalhes reais (sem exagero). O objetivo é credibilidade, não “personagem”.
+          </p>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3>Weverton Mendes</h3>
+        <p style="margin-top:8px">
+          Empreendedor, perito avaliador imobiliário e corretor associado, com atuação internacional e experiência prática em estruturação de operações,
+          atendimento e decisões de negócio em contextos reais. Este treinamento foi construído para reduzir improviso e aumentar previsibilidade para
+          quem quer operar fora do país com responsabilidade.
+        </p>
+        <p style="margin-top:12px; color:var(--muted2); font-size:12.5px">
+          Observação: Este curso é educacional e estratégico e não substitui assessoria jurídica, contábil ou migratória.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">FAQ</h2>
+          <p class="subtitle reveal">As dúvidas que mais derrubam conversão — respondidas com clareza.</p>
+        </div>
+      </div>
+
+      <details class="reveal">
+        <summary>Esse curso me garante visto, emprego ou imigração?</summary>
+        <p>Não. O Estrutura Global é um treinamento educacional e estratégico sobre estrutura, operação, atendimento e logística. Ele não oferece garantias migratórias, nem substitui assessorias especializadas.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>O curso é para quem já mora fora ou para quem quer morar?</summary>
+        <p>Para ambos. Se você já mora fora, vai organizar e profissionalizar sua operação. Se deseja morar, vai ganhar clareza e critérios para construir base de negócio com responsabilidade — respeitando regras do país.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>Preciso ter empresa aberta ou um negócio pronto?</summary>
+        <p>Não necessariamente. O curso ajuda a estruturar base, processo e decisões. Se você já tem negócio, melhora operação. Se ainda está montando, evita erros caros.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>Como funciona o acesso e o pagamento?</summary>
+        <p>O pagamento e acesso são processados pela Hotmart, com opções de parcelamento disponíveis. Após a compra, você recebe acesso à área de membros.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>Qual é a garantia?</summary>
+        <p>A garantia segue as regras da Hotmart. O prazo padrão é de 7 dias. Recomendamos assistir ao conteúdo inicial e aplicar a rotina mínima proposta antes de decidir.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta-strip reveal">
+        <div>
+          <b>Pronto para sair do improviso e operar com estrutura?</b>
+          <span>Se você quer clareza, processo e decisões com critério — o Estrutura Global foi desenhado para isso.</span>
+        </div>
+        <div class="right">
+          <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
+            <span class="dot"></span> Comprar na Hotmart
+          </a>
+          <a class="btn ghost" href="#sobre">Rever detalhes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:grid; gap:10px">
+        <div>© <span id="year"></span> Estrutura Global — Todos os direitos reservados.</div>
+        <div>
+          Este site é uma página informativa. Compra, acesso, pagamentos, reembolso e entrega são processados pela Hotmart.
+        </div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap">
+          <a href="https://help.hotmart.com/pt-br/" target="_blank" rel="noopener">Central de Ajuda Hotmart</a>
+          <a href="https://www.gov.uk/" target="_blank" rel="noopener">GOV.UK</a>
+          <a href="https://www.sebrae.com.br/" target="_blank" rel="noopener">Sebrae</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA -->
+  <div class="floatbar" aria-hidden="false">
+    <div class="wrap">
+      <div class="float-inner">
+        <div class="left">
+          <div class="logo" style="width:34px;height:34px;border-radius:12px" aria-hidden="true"></div>
+          <div>
+            <b>Estrutura Global</b>
+            <span>R$ 997 • Parcelamento na Hotmart</span>
+          </div>
+        </div>
+        <div class="right">
+          <a class="btn primary" style="padding:10px 14px;border-radius:999px" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
+            <span class="dot"></span> Comprar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const els = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.classList.add('show');
+      }
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+
+    // Smooth scroll (basic)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (ev) => {
+        const id = a.getAttribute('href');
+        const target = document.querySelector(id);
+        if (!target) return;
+        ev.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  </script>
+</body>
+</html>
