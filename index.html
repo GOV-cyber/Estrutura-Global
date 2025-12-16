@@ -10,8 +10,9 @@
   <meta property="og:title" content="Estrutura Global — Negócios sem improviso" />
   <meta property="og:description" content="Estruture um negócio internacional sólido, sem improviso e sem atalhos." />
   <meta property="og:type" content="website" />
+  <!-- Dica: suba cover.png no repo e deixe aqui -->
   <meta property="og:image" content="cover.png" />
-  <meta property="og:url" content="https://SEUUSUARIO.github.io/estrutura-global/" />
+  <meta property="og:url" content="https://gov-cyber.github.io/Estrutura-Global/" />
 
   <style>
     :root{
@@ -83,6 +84,7 @@
     }
     .nav a{opacity:.88}
     .nav a:hover{opacity:1}
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
@@ -107,11 +109,22 @@
       border-color: rgba(214,184,108,.55);
       background: linear-gradient(180deg, rgba(214,184,108,.28), rgba(214,184,108,.10));
     }
+    .btn.whats{
+      border-color: rgba(61,255,181,.28);
+      background: linear-gradient(180deg, rgba(61,255,181,.15), rgba(255,255,255,.03));
+    }
+    .btn.whats:hover{
+      border-color: rgba(61,255,181,.45);
+      background: linear-gradient(180deg, rgba(61,255,181,.20), rgba(255,255,255,.04));
+    }
+
     .btn .dot{
       width:8px; height:8px; border-radius:999px;
       background: var(--gold);
       box-shadow: 0 0 18px rgba(214,184,108,.35);
     }
+    .btn .w{width:10px;height:10px;border-radius:999px;background:var(--green);box-shadow:0 0 18px rgba(61,255,181,.30)}
+    .btn .i{width:10px;height:10px;border-radius:999px;background:var(--cyan);box-shadow:0 0 18px rgba(70,211,255,.30)}
 
     /* HERO */
     header.hero{
@@ -153,6 +166,7 @@
       font-size:13px;
       letter-spacing:.3px;
       margin-bottom:12px;
+      flex-wrap:wrap;
     }
     .pill{
       display:inline-flex; align-items:center; gap:8px;
@@ -278,7 +292,6 @@
       display:grid; place-items:center;
       flex:0 0 auto;
     }
-    .ico svg{opacity:.9}
     .two{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -341,9 +354,7 @@
       position:fixed; left:0; right:0; bottom:14px; z-index:60;
       pointer-events:none;
     }
-    .floatbar .wrap{
-      display:flex; justify-content:center;
-    }
+    .floatbar .wrap{display:flex; justify-content:center;}
     .float-inner{
       pointer-events:auto;
       max-width: var(--max);
@@ -356,10 +367,7 @@
       padding:10px 10px;
       display:flex; gap:10px; align-items:center; justify-content:space-between;
     }
-    .float-inner .left{
-      display:flex; gap:10px; align-items:center;
-      min-width: 0;
-    }
+    .float-inner .left{display:flex; gap:10px; align-items:center; min-width:0;}
     .float-inner .left b{font-size:13px}
     .float-inner .left span{
       color:var(--muted2);
@@ -381,20 +389,117 @@
     }
 
     /* Scroll reveal */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .reveal.show{
-      opacity:1;
-      transform: translateY(0);
-    }
+    .reveal{opacity:0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease;}
+    .reveal.show{opacity:1; transform: translateY(0);}
     .divider{
       height:1px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
       margin: 10px 0 0;
     }
+
+    /* ====== MODAL LEADS (WhatsApp Gate) ====== */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      background: rgba(0,0,0,.68);
+      backdrop-filter: blur(8px);
+      padding: 18px;
+    }
+    .modal.show{display:block;}
+    .modal-card{
+      max-width: 520px;
+      margin: 5vh auto;
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(680px 240px at 20% 10%, rgba(70,211,255,.14), transparent 60%),
+        radial-gradient(680px 240px at 80% 0%, rgba(214,184,108,.14), transparent 60%),
+        linear-gradient(180deg, rgba(14,22,40,.92), rgba(7,10,16,.88));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .modal-head{
+      padding:16px 18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modal-head h3{margin:0; font-size:16px}
+    .modal-head p{margin:6px 0 0; color:var(--muted); font-size:12.5px; line-height:1.4}
+    .xbtn{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      width:36px; height:36px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      cursor:pointer;
+    }
+    .xbtn:hover{border-color: rgba(255,255,255,.18)}
+    .modal-body{padding:16px 18px 18px}
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media(max-width:520px){ .grid2{grid-template-columns:1fr} }
+    .field label{
+      display:block;
+      font-size:12px;
+      color: var(--muted2);
+      margin: 8px 0 6px;
+    }
+    .field input, .field select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(7,10,16,.78);
+      color: var(--text);
+      outline:none;
+    }
+    .field input:focus, .field select:focus{border-color: rgba(70,211,255,.35)}
+    .consent{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.35;
+    }
+    .consent input{margin-top:2px}
+    .modal-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .note{
+      margin-top:10px;
+      color: var(--muted2);
+      font-size: 12px;
+      line-height:1.45;
+    }
+    .error{
+      display:none;
+      margin-top:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,77,109,.35);
+      background: rgba(255,77,109,.10);
+      color: rgba(255,255,255,.90);
+      font-size: 12.5px;
+    }
+    .error.show{display:block;}
   </style>
 </head>
 
@@ -430,6 +535,7 @@
         <div class="kicker">
           <span class="pill">Programa premium • foco em estrutura</span>
           <span class="pill">Legal • previsível • sustentável</span>
+          <span class="pill">Atendimento via WhatsApp</span>
         </div>
 
         <h1>Estruture um negócio internacional sólido,<br>sem improviso — e sem atalhos.</h1>
@@ -443,8 +549,14 @@
           <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
             <span class="dot"></span> Quero acesso agora
           </a>
+
+          <!-- BOTÃO WHATSAPP (abre modal de cadastro) -->
+          <button class="btn whats" type="button" onclick="openLeadModal('hero')">
+            <span class="w"></span> Falar no WhatsApp
+          </button>
+
           <a class="btn" href="#o-que-voce-vai-aprender">
-            Ver o que vou aprender
+            <span class="i"></span> Ver o que vou aprender
           </a>
         </div>
 
@@ -506,21 +618,15 @@
           <h3>O que costuma acontecer</h3>
           <ul class="list">
             <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
+              <span class="ico" aria-hidden="true">⏱️</span>
               <div><span class="b">Tempo</span> vira retrabalho: você faz, desfaz, muda ferramenta, troca processo.</div>
             </li>
             <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 12h14" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/></svg>
-              </span>
+              <span class="ico" aria-hidden="true">💬</span>
               <div><span class="b">Atendimento</span> vira caos: leads frios, mensagens perdidas, falta de padrão e follow-up.</div>
             </li>
             <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" stroke="white" stroke-opacity=".85" stroke-width="2"/><path d="M12 8h.01" stroke="white" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/></svg>
-              </span>
+              <span class="ico" aria-hidden="true">🧠</span>
               <div><span class="b">Decisão</span> vira achismo: você não tem critério pra escolher canal, oferta, preço e execução.</div>
             </li>
           </ul>
@@ -530,21 +636,15 @@
           <h3>O que o Estrutura Global resolve</h3>
           <ul class="list">
             <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
+              <span class="ico" aria-hidden="true">✅</span>
               <div><span class="b">Clareza</span> sobre o que fazer primeiro, o que cortar e o que não te dá retorno.</div>
             </li>
             <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-6 4 2 8-6-5-6 5 2-8-6-4h7l3-7z" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round"/></svg>
-              </span>
+              <span class="ico" aria-hidden="true">⭐</span>
               <div><span class="b">Estrutura mínima</span> de processos, atendimento e operação para rodar com previsibilidade.</div>
             </li>
             <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 19V5m12 14V5M6 12h12" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/></svg>
-              </span>
+              <span class="ico" aria-hidden="true">📌</span>
               <div><span class="b">Critério</span> para decidir canais, ferramentas e rotinas sem “copiar fórmula” de internet.</div>
             </li>
           </ul>
@@ -556,14 +656,17 @@
           <b>Se você quer operar fora do país com mais paz, começa pela estrutura.</b>
           <span>Sem promessa vazia. Sem truque. Só o que funciona quando o ambiente é real.</span>
         </div>
-        <div class="right">
+        <div class="right" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
           <div class="price">
             <div class="big">R$ 997</div>
-            <div class="small">Parcelamento disponível na Hotmart</div>
+            <div class="small">Parcelamento disponível</div>
           </div>
           <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
             <span class="dot"></span> Comprar agora
           </a>
+          <button class="btn whats" type="button" onclick="openLeadModal('cta-strip')">
+            <span class="w"></span> Tirar dúvidas no WhatsApp
+          </button>
         </div>
       </div>
     </div>
@@ -657,7 +760,7 @@
         <div>
           <h2 class="reveal">Sobre o autor</h2>
           <p class="subtitle reveal">
-            Ajuste o texto abaixo com seus detalhes reais (sem exagero). O objetivo é credibilidade, não “personagem”.
+            Credibilidade real, sem personagem: vivência prática, operação e estrutura.
           </p>
         </div>
       </div>
@@ -721,10 +824,13 @@
           <b>Pronto para sair do improviso e operar com estrutura?</b>
           <span>Se você quer clareza, processo e decisões com critério — o Estrutura Global foi desenhado para isso.</span>
         </div>
-        <div class="right">
+        <div class="right" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
           <a class="btn primary" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
             <span class="dot"></span> Comprar na Hotmart
           </a>
+          <button class="btn whats" type="button" onclick="openLeadModal('final-cta')">
+            <span class="w"></span> Falar no WhatsApp
+          </button>
           <a class="btn ghost" href="#sobre">Rever detalhes</a>
         </div>
       </div>
@@ -742,6 +848,7 @@
           <a href="https://help.hotmart.com/pt-br/" target="_blank" rel="noopener">Central de Ajuda Hotmart</a>
           <a href="https://www.gov.uk/" target="_blank" rel="noopener">GOV.UK</a>
           <a href="https://www.sebrae.com.br/" target="_blank" rel="noopener">Sebrae</a>
+          <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">ANPD (LGPD)</a>
         </div>
       </div>
     </div>
@@ -755,10 +862,13 @@
           <div class="logo" style="width:34px;height:34px;border-radius:12px" aria-hidden="true"></div>
           <div>
             <b>Estrutura Global</b>
-            <span>R$ 997 • Parcelamento na Hotmart</span>
+            <span>R$ 997 • Parcelamento disponível</span>
           </div>
         </div>
         <div class="right">
+          <button class="btn whats" style="padding:10px 14px;border-radius:999px" type="button" onclick="openLeadModal('float')">
+            <span class="w"></span> WhatsApp
+          </button>
           <a class="btn primary" style="padding:10px 14px;border-radius:999px" href="https://globalexpressbrasil.hotmart.host/estrutura-global-71d13f10-1908-47cb-a598-ca224cbdd4c1" target="_blank" rel="noopener">
             <span class="dot"></span> Comprar
           </a>
@@ -767,7 +877,86 @@
     </div>
   </div>
 
+  <!-- ===== MODAL CADASTRO (OBRIGATÓRIO ANTES DO WHATSAPP) ===== -->
+  <div class="modal" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3 id="leadTitle">Antes de falar no WhatsApp</h3>
+          <p>Preencha seus dados para eu te atender mais rápido e com mais precisão.</p>
+        </div>
+        <button class="xbtn" type="button" onclick="closeLeadModal()" aria-label="Fechar">
+          ✕
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="pill" style="margin-bottom:10px; display:inline-flex">
+          <span class="w"></span> Atendimento direto • +44 7494 204460
+        </div>
+
+        <form id="leadForm" autocomplete="on">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" required placeholder="Seu nome completo" />
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" required type="email" placeholder="seuemail@dominio.com" />
+            </div>
+            <div class="field">
+              <label for="telefone">Telefone</label>
+              <input id="telefone" name="telefone" required placeholder="+44… ou +55…" />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="pais">País</label>
+              <input id="pais" name="pais" required placeholder="Ex: Reino Unido / Brasil" />
+            </div>
+            <div class="field">
+              <label for="cidade">Cidade</label>
+              <input id="cidade" name="cidade" required placeholder="Ex: London / Goiânia" />
+            </div>
+          </div>
+
+          <div class="consent">
+            <input id="consent" type="checkbox" required />
+            <label for="consent">
+              Eu concordo em compartilhar meus dados para contato via WhatsApp sobre o <b>Estrutura Global</b>.
+              (Você pode pedir remoção a qualquer momento.)
+            </label>
+          </div>
+
+          <div id="leadError" class="error"></div>
+
+          <div class="modal-actions">
+            <button class="btn whats" type="submit" style="flex:1">
+              <span class="w"></span> Continuar para WhatsApp
+            </button>
+            <button class="btn" type="button" onclick="closeLeadModal()">
+              Cancelar
+            </button>
+          </div>
+
+          <div class="note">
+            Nota: Este formulário não garante resultado. Ele serve para organizar seu atendimento e evitar ruído na conversa.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ===== CONFIG =====
+    const WHATSAPP_PHONE_E164 = "447494204460"; // SEM o "+"
+    const COURSE_NAME = "Estrutura Global";
+    const SITE_URL = "https://gov-cyber.github.io/Estrutura-Global/";
+    let leadOrigin = "site";
+
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -780,7 +969,7 @@
     }, { threshold: 0.12 });
     els.forEach(el => io.observe(el));
 
-    // Smooth scroll (basic)
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (ev) => {
         const id = a.getAttribute('href');
@@ -789,6 +978,101 @@
         ev.preventDefault();
         target.scrollIntoView({behavior:'smooth', block:'start'});
       });
+    });
+
+    // ===== Modal controls =====
+    function openLeadModal(origin){
+      leadOrigin = origin || "site";
+      document.getElementById('leadModal').classList.add('show');
+      setTimeout(() => document.getElementById('nome')?.focus(), 30);
+    }
+    function closeLeadModal(){
+      document.getElementById('leadModal').classList.remove('show');
+      clearError();
+    }
+
+    // Close modal on background click
+    document.getElementById('leadModal').addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'leadModal') closeLeadModal();
+    });
+
+    // Esc to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLeadModal();
+    });
+
+    function showError(msg){
+      const el = document.getElementById('leadError');
+      el.textContent = msg;
+      el.classList.add('show');
+    }
+    function clearError(){
+      const el = document.getElementById('leadError');
+      el.textContent = "";
+      el.classList.remove('show');
+    }
+
+    function sanitize(str){
+      return (str || "").toString().replace(/\s+/g, " ").trim();
+    }
+
+    // ===== Submit lead -> WhatsApp =====
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      clearError();
+
+      const nome = sanitize(document.getElementById('nome').value);
+      const email = sanitize(document.getElementById('email').value);
+      const telefone = sanitize(document.getElementById('telefone').value);
+      const pais = sanitize(document.getElementById('pais').value);
+      const cidade = sanitize(document.getElementById('cidade').value);
+      const consent = document.getElementById('consent').checked;
+
+      if(!nome || !email || !telefone || !pais || !cidade){
+        showError("Preencha todos os campos para continuar.");
+        return;
+      }
+      if(!consent){
+        showError("Você precisa concordar com o uso dos dados para contato via WhatsApp.");
+        return;
+      }
+
+      // Backup local (não é CRM, mas evita perder lead se o usuário fechar tudo)
+      const payload = {
+        nome, email, telefone, pais, cidade,
+        origin: leadOrigin,
+        page: SITE_URL,
+        course: COURSE_NAME,
+        timestamp: new Date().toISOString()
+      };
+      try{
+        localStorage.setItem('lead_estrutura_global_latest', JSON.stringify(payload));
+      }catch(err){ /* ignore */ }
+
+      // Mensagem para WhatsApp (organizada e fácil de copiar pro seu CRM depois)
+      const msg =
+`📌 NOVO CONTATO — ${COURSE_NAME}
+
+Nome: ${nome}
+Email: ${email}
+Telefone: ${telefone}
+País: ${pais}
+Cidade: ${cidade}
+
+Origem: ${leadOrigin}
+Página: ${SITE_URL}
+
+Mensagem:
+Olá Weverton, quero entender como aplicar o Estrutura Global no meu caso.`;
+
+      const url = `https://wa.me/${WHATSAPP_PHONE_E164}?text=${encodeURIComponent(msg)}`;
+
+      // Abre WhatsApp e fecha modal
+      window.open(url, '_blank', 'noopener');
+      closeLeadModal();
+
+      // Limpa formulário (opcional)
+      e.target.reset();
     });
   </script>
 </body>
